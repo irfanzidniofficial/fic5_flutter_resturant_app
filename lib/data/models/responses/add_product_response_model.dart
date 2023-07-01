@@ -42,8 +42,8 @@ class Attributes with _$Attributes {
     required DateTime createdAt,
     required DateTime updatedAt,
     required DateTime publishedAt,
-    required String photo,
-    required String userId,
+     String? photo,
+     String? userId,
   }) = _Attributes;
 
   factory Attributes.fromJson(Map<String, dynamic> json) =>
