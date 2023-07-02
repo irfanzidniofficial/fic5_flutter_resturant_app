@@ -25,6 +25,21 @@ class RestaurantDatasource {
     }
   }
 
+  Future<Either<String, AddProductResponseModel>> getById(int id) async {
+    final response = await http.get(
+      Uri.parse("${Constants.baseUrl}/api/restaurants/$id"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return Right(AddProductResponseModel.fromJson(jsonDecode(response.body)));
+    } else {
+      return const Left("API ERROR");
+    }
+  }
+
   Future<Either<String, AddProductResponseModel>> addProduct(
       AddProductRequestModel model) async {
     final token = await AuthLocalDatasource().getToken();

@@ -1,6 +1,8 @@
+import 'package:fic5_flutter_restaurant_app/bloc/detail_product/detail_product_bloc.dart';
 import 'package:fic5_flutter_restaurant_app/bloc/get_all_product/get_all_product_bloc.dart';
 import 'package:fic5_flutter_restaurant_app/data/local_datasources/auth_local_datasource.dart';
 import 'package:fic5_flutter_restaurant_app/data/remote_datasources/restaurant_datasource.dart';
+import 'package:fic5_flutter_restaurant_app/presentation/pages/detail_restaurant_page.dart';
 
 import 'package:fic5_flutter_restaurant_app/presentation/pages/home_page.dart';
 import 'package:fic5_flutter_restaurant_app/presentation/pages/login_page.dart';
@@ -19,10 +21,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetAllProductBloc(
-        RestaurantDatasource(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => GetAllProductBloc(
+            RestaurantDatasource(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => DetailProductBloc(RestaurantDatasource()),
+        ),
+      ],
       child: MaterialApp.router(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -55,7 +64,13 @@ class MyApp extends StatelessWidget {
                   return LoginPage.routeName;
                 }
               },
-            )
+            ),
+            GoRoute(
+              path: '${DetailRestaurantPage.routeName}/:restaurantId',
+              builder: (context, state) => DetailRestaurantPage(
+                id: int.parse(state.pathParameters['restaurantId']!),
+              ),
+            ),
           ],
         ),
       ),
