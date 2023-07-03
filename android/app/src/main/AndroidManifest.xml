@@ -3,6 +3,9 @@
         android:label="fic5_flutter_restaurant_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+           android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDibqZy4BQxwm3oM1BS57VmEEhKH_Ug1fU" /> 
         <activity
             android:name=".MainActivity"
             android:exported="true"

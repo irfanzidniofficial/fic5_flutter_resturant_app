@@ -1,6 +1,8 @@
+import 'package:fic5_flutter_restaurant_app/bloc/bloc/gmap_bloc.dart';
 import 'package:fic5_flutter_restaurant_app/bloc/detail_product/detail_product_bloc.dart';
 import 'package:fic5_flutter_restaurant_app/bloc/get_all_product/get_all_product_bloc.dart';
 import 'package:fic5_flutter_restaurant_app/data/local_datasources/auth_local_datasource.dart';
+import 'package:fic5_flutter_restaurant_app/data/remote_datasources/gmap_datasource.dart';
 import 'package:fic5_flutter_restaurant_app/data/remote_datasources/restaurant_datasource.dart';
 import 'package:fic5_flutter_restaurant_app/presentation/pages/detail_restaurant_page.dart';
 
@@ -30,6 +32,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => DetailProductBloc(RestaurantDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => GmapBloc(GmapDatasource()),
         ),
       ],
       child: MaterialApp.router(
