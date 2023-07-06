@@ -1,7 +1,10 @@
 import 'package:fic5_flutter_restaurant_app/bloc/bloc/gmap_bloc.dart';
 import 'package:fic5_flutter_restaurant_app/bloc/detail_product/detail_product_bloc.dart';
 import 'package:fic5_flutter_restaurant_app/bloc/get_all_product/get_all_product_bloc.dart';
+import 'package:fic5_flutter_restaurant_app/bloc/login/login_bloc.dart';
+import 'package:fic5_flutter_restaurant_app/bloc/register/register_bloc.dart';
 import 'package:fic5_flutter_restaurant_app/data/local_datasources/auth_local_datasource.dart';
+import 'package:fic5_flutter_restaurant_app/data/remote_datasources/auth_datasource.dart';
 import 'package:fic5_flutter_restaurant_app/data/remote_datasources/gmap_datasource.dart';
 import 'package:fic5_flutter_restaurant_app/data/remote_datasources/restaurant_datasource.dart';
 import 'package:fic5_flutter_restaurant_app/presentation/pages/detail_restaurant_page.dart';
@@ -36,6 +39,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => GmapBloc(GmapDatasource()),
         ),
+        BlocProvider(
+          create: (context) => RegisterBloc(AuthDataSources()),
+        ),
+        BlocProvider(
+          create: (context) => LoginBloc(AuthDataSources()),
+        ),
       ],
       child: MaterialApp.router(
         title: 'Flutter Demo',
@@ -57,6 +66,10 @@ class MyApp extends StatelessWidget {
             GoRoute(
               path: HomePage.routeName,
               builder: (context, state) => const HomePage(),
+            ),
+            GoRoute(
+              path: MyRestaurantPage.routeName,
+              builder: (context, state) => const MyRestaurantPage(),
             ),
             GoRoute(
               path: MyRestaurantPage.routeName,

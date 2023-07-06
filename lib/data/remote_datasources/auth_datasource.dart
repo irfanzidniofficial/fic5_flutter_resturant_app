@@ -19,8 +19,12 @@ class AuthDataSources {
       body: jsonEncode(registerData.toJson()),
     );
 
-    if (response.statusCode == 201) {
-      return Right(jsonDecode(response.body));
+    if (response.statusCode == 200) {
+      return Right(
+        AuthResponseModel.fromJson(
+          jsonDecode(response.body),
+        ),
+      );
     } else {
       return const Left(
         "API ERROR",
@@ -38,8 +42,12 @@ class AuthDataSources {
       body: jsonEncode(model.toJson()),
     );
 
-    if (response.statusCode == 201) {
-      return Right(jsonDecode(response.body));
+    if (response.statusCode == 200) {
+      return Right(
+        AuthResponseModel.fromJson(
+          jsonDecode(response.body),
+        ),
+      );
     } else {
       return const Left(
         "API ERROR",
