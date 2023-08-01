@@ -25,7 +25,7 @@ class RestaurantDatasource {
     }
   }
 
-   Future<Either<String, ProductsResponseModel>> getByUserId(int userId) async {
+  Future<Either<String, ProductsResponseModel>> getByUserId(int userId) async {
     final response = await http.get(
       Uri.parse("${Constants.baseUrl}/api/restaurants?filters[userId]=$userId"),
       headers: <String, String>{
@@ -64,7 +64,7 @@ class RestaurantDatasource {
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer $token'
       },
-      body: jsonEncode(model.toString()),
+      body: jsonEncode(model.toJson()),
     );
 
     if (response.statusCode == 200) {

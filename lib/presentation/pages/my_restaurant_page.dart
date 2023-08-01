@@ -1,5 +1,6 @@
 import 'package:fic5_flutter_restaurant_app/bloc/get_all_product/get_all_product_bloc.dart';
 import 'package:fic5_flutter_restaurant_app/data/local_datasources/auth_local_datasource.dart';
+import 'package:fic5_flutter_restaurant_app/presentation/pages/add_restaurant_page.dart';
 import 'package:fic5_flutter_restaurant_app/presentation/pages/home_page.dart';
 import 'package:fic5_flutter_restaurant_app/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +80,9 @@ class _MyRestaurantPageState extends State<MyRestaurantPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          context.push(AddRestaurantPage.routeName);
+        },
         child: const Icon(
           Icons.add,
         ),
